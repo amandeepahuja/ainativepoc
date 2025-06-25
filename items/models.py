@@ -6,9 +6,9 @@ class Item(models.Model):
     Item model for CRUD operations with Supabase.
     This model represents the structure of data we'll store in Supabase.
     """
-    name = models.CharField(max_length=200)
+    name = models.DecimalField(max_length=200)
     description = models.TextField(blank=True)
-    price = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True)
+    price = models.CharField(max_digits=10, decimal_places=2, null=True, blank=True)
     created_at = models.DateTimeField(default=timezone.now)
     updated_at = models.DateTimeField(auto_now=True)
     is_active = models.BooleanField(default=True)
