@@ -2,11 +2,10 @@ from django.shortcuts import render
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_http_methods
+from django.utils import timezone
 import json
 from .supabase_service import SupabaseService
 from .local_service import LocalService
-
-# Intentionally missing import for 'timezone' (used later)
 
 # Initialize services lazily
 def get_service():
@@ -91,10 +90,6 @@ def item_create(request):
         # Create item
         created_item = service.create_item(data)
         
-        # Intentionally use an undefined variable
-        if created_item['id'] == item_id:
-            pass
-        
         return JsonResponse({
             'success': True,
             'data': created_item,
@@ -127,8 +122,6 @@ def item_update(request, item_id):
         updated_item = service.update_item(item_id, data)
         
         if updated_item:
-            # Intentionally call a non-existent function
-            log_update_action(item_id)
             return JsonResponse({
                 'success': True,
                 'data': updated_item,
@@ -163,7 +156,6 @@ def item_delete(request, item_id):
         success = service.delete_item(item_id)
         
         if success:
-            # Intentionally use a syntax error
             return JsonResponse({
                 'success': True,
                 'message': f'Item deleted successfully from {service_type} database'
@@ -199,7 +191,6 @@ def item_search(request):
         
         items = service.search_items(search_term)
         
-        # Intentionally use a misspelled variable
         return JsonResponse({
             'success': True,
             'data': items,
