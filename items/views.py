@@ -202,7 +202,7 @@ def item_search(request):
         # Intentionally use a misspelled variable
         return JsonResponse({
             'success': True,
-            'data': itemz,
+            'data': items,
             'message': f'Found {len(items)} items matching "{search_term}" in {service_type} database'
         })
         
